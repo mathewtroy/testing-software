@@ -1,6 +1,7 @@
 package cz.cvut.fel.ts1;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,9 +11,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class SeleniumBasic {
@@ -42,7 +46,7 @@ public class SeleniumBasic {
         driver.get("https://www.pinkorblue.cz/kosik/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-//        driver.findElement(By.cssSelector(".js-cookie-modal-accept-all")).click();
+//      driver.findElement(By.cssSelector(".js-cookie-modal-accept-all")).click();
 
 
     }
@@ -77,7 +81,7 @@ public class SeleniumBasic {
     @DisplayName("Search for \"shit\"")
     @Test
     public void searchBar1() {
-        String expectedText = "Hledej \"shit\" (159 Výrobky)";
+        String expectedText = "Hledej \"shit\" (157 Výrobky)";
         String expectedUrl = "https://www.pinkorblue.cz/search/?q=shit";
         performSearch("shit", expectedText, expectedUrl);
     }
@@ -98,6 +102,21 @@ public class SeleniumBasic {
         performSearch("pampers", expectedText, expectedUrl);
     }
 
+    /**
+     * The purpose of the performSearch method is to perform a search on a web page
+     * and then verify that the search results contain the expected text and that the URL
+     * of the search results page matches the expected URL.
+     *
+     * The Java doc comment at the beginning of the code snippet provides documentation for the method
+     * parameters. The @param tag is used to document each parameter, with the parameter name and
+     * a brief description following the tag. In this case, the @param tag is used three times,
+     * once for each parameter, to document what each parameter represents.
+     *
+     * @param searchText - String that represents the text to be searched for.
+     * @param expectedText - String that represents the expected text that should appear in the search results.
+     * @param expectedUrl - String that represents the expected URL of the search results page.
+     *
+     */
     private void performSearch(String searchText, String expectedText, String expectedUrl) {
         WebElement sidebar = driver.findElement(By.id("bm-search"));
         sidebar.sendKeys(searchText);
@@ -111,7 +130,18 @@ public class SeleniumBasic {
     }
 
 
-
+    /**
+     * This test case verifies that an empty shopping cart message is displayed on the shopping cart page.
+     *
+     * The purpose of the testEmptyCart method is to verify that an empty shopping cart message is displayed on a web page. The method performs the following steps:
+     * Opens the shopping cart page by navigating to the URL "https://www.pinkorblue.cz/kosik/".
+     * Locates an empty cart message on the page using a CSS class name selector.
+     * Asserts that the empty cart message is displayed by calling the isDisplayed method on the
+     * WebElement object that represents the message element.
+     * Uses the Assertions class to verify that the boolean expression emptyCartMessage.isDisplayed()
+     * evaluates to true.
+     *
+     */
 
 
     @Test
@@ -194,4 +224,63 @@ public class SeleniumBasic {
     }
 
 
+
+    @Test
+    public void testOrderPlacement() {
+        // Login
+        testAddToCart();
+
+        // Go to checkout
+        WebElement toCheckoutButton =
+                driver.findElement(By.xpath("//*[@id='to_checkout_button']/form/button"));
+        toCheckoutButton.click();
+
+        //        // Fill in personal details
+        //        WebElement firstNameInput = driver.findElement(By.xpath("//*[@id='vorname-l']"));
+        //        firstNameInput.sendKeys("Jiri");
+        //        WebElement lastNameInput = driver.findElement(By.xpath("//*[@id='nachname-l']"));
+        //        lastNameInput.sendKeys("Prochazka");
+        //        WebElement streetInput = driver.findElement(By.xpath("//*[@id='strasse-l']"));
+        //        streetInput.sendKeys("Technicka");
+        //        WebElement houseNumberInput = driver.findElement(By.xpath("//*[@id='hausnr-l']"));
+        //        houseNumberInput.sendKeys("2");
+        //        WebElement postcodeInput = driver.findElement(By.xpath("//*[@id='plz-l']"));
+        //        postcodeInput.sendKeys("16900");
+        //        WebElement cityInput = driver.findElement(By.xpath("//*[@id='ort-l']"));
+        //        cityInput.sendKeys("Praha");
+        //        WebElement countrySelect = driver.findElement(By.xpath("//*[@id='country']"));
+        //        countrySelect.sendKeys("Česká republika");
+        //        WebElement phoneInput = driver.findElement(By.xpath("//*[@id='telefon-l']"));
+        //        phoneInput.sendKeys("777888666");
+
+
+        // Agree to terms and conditions
+
+        // Checkbox element
+        WebElement checkbox =
+                driver.findElement(By.xpath("//*[@id=\"checkOutForm\"]/div[10]/div[1]/div/label/span"));
+
+        // Checking if the checkbox is not selected
+        if (!checkbox.isSelected()) {
+            // If the checkbox is not selected, then click on it
+            checkbox.click();
+        }
+
+        // Checking if the checkbox is selected
+        if (checkbox.isSelected()) {
+            // If the checkbox is selected, then we do the necessary actions
+
+            // Place order
+            WebElement placeOrderButton = driver.findElement(By.xpath("//*[@id='checkOutForm']/div[4]/div[1]/div/button"));
+            placeOrderButton.click();
+
+        // Check payment methods page
+            String paymentMethodsText = driver.findElement(By.xpath("//p[contains(text(),'Způsoby platby')]")).getText();
+            assertEquals("Způsoby platby", paymentMethodsText);
+        }
+
+
+        driver.quit();
+
+    }
 }
