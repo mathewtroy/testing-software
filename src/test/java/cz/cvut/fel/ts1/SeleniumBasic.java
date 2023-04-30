@@ -192,6 +192,6 @@ public class SeleniumBasic {
         WebElement itemTitle = driver.findElement(By.xpath("/html/body/div[3]/div[1]/div[1]/ul/form/li/ul/a"));
         Assertions.assertEquals(expectedItemTitle, itemTitle.getText());
     }
-
+//
 
 }
