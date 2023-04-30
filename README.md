@@ -1,4 +1,10 @@
-# Ts1 Sp
+# Semestrální projekt z předmětu Testování softwaru (TS1)
+
+## Cvičící: Václav Smítka
+## Zpracovali:  Aleksandr Kross, Vladyslav Hordiienko
+
+
+
 
 
 
