@@ -65,7 +65,7 @@ public class SeleniumBasic {
      */
     @AfterEach
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
     }
 
     /**
@@ -175,6 +175,31 @@ public class SeleniumBasic {
         Assertions.assertEquals(expectedMessage, actualMessage);
     }
 
+    // ТЕСТ ОДНОРАЗОВЬІЙ
+    // НАДО КАК ТО ПОДКЛЮЧИТЬ CSV
+    @Test
+    public void testRegistrace(){
+        driver.get("https://www.pinkorblue.cz/Erstanmeldung/");
+
+        // Accept cookies
+        driver.findElement(By.cssSelector(".cookie-banner__button.js-cookie-modal-accept-all")).click();
+        driver.findElement(By.cssSelector("#vorname")).sendKeys("Albert");
+        driver.findElement(By.cssSelector("#nachname")).sendKeys("Švehla");
+        driver.findElement(By.cssSelector("#email")).sendKeys("albertsvehla@gmail.com");
+        driver.findElement(By.cssSelector("#pwd")).sendKeys("albertsvehla@gmail.com");
+        driver.findElement(By.cssSelector("#pwdrep")).sendKeys("albertsvehla@gmail.com");
+
+
+        driver.findElement(By.cssSelector("#checkOutForm > div.form-group.margin-top > div > button")).click();
+
+        String expectedLink = "https://www.pinkorblue.cz/Konto/";
+        String expectedMessage = "Dobrý den, Albert";
+        Assertions.assertEquals(expectedLink, driver.getCurrentUrl());
+        Assertions.assertEquals(expectedMessage, driver.findElement(By.cssSelector("#siteMain > div > div.col-sm-3 > div > div.sidemenu__title")).getText());
+
+
+    }
+
 
     @Test
     public void testAddToCart() {
@@ -198,7 +223,7 @@ public class SeleniumBasic {
     }
 
 
-//  Тот же тест
+    //  Тот же тест
 //  С новыми фичами
     @ParameterizedTest
     @CsvSource({
@@ -274,7 +299,7 @@ public class SeleniumBasic {
             WebElement placeOrderButton = driver.findElement(By.xpath("//*[@id='checkOutForm']/div[4]/div[1]/div/button"));
             placeOrderButton.click();
 
-        // Check payment methods page
+            // Check payment methods page
             String paymentMethodsText = driver.findElement(By.xpath("//p[contains(text(),'Způsoby platby')]")).getText();
             assertEquals("Způsoby platby", paymentMethodsText);
         }
@@ -283,4 +308,6 @@ public class SeleniumBasic {
         driver.quit();
 
     }
+
+
 }
