@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +66,7 @@ public class SeleniumBasic {
      */
     @AfterEach
     public void tearDown() {
-//        driver.quit();
+        driver.quit();
     }
 
     /**
@@ -305,9 +306,162 @@ public class SeleniumBasic {
         }
 
 
-        driver.quit();
+        //driver.quit();
+        //tearDown();
 
     }
+
+    @Test
+    public void testCheckOrder() {
+
+        testOrderPlacement();
+
+
+////*[@id="payment3"]/div/label/div[1]/span
+//// *[@id="payment3"]/div/label/div[1]/span
+//        // Choose payment method
+//        WebElement toMethodPaymentButton = driver.findElement(By.xpath("//*[@id=\"payment3\"]/div/label/div[1]/span"));
+//        toMethodPaymentButton.click();
+
+
+//        //*[@id="siteMain"]/button
+//*[@id="siteMain"]/div[2]/div[1]/p/button
+
+
+        // Go to payment page
+        // K pokladne
+        WebElement toPaymentButton = driver.findElement(By.xpath("//*[@id=\"siteMain\"]/button"));
+        toPaymentButton.click();
+        //*[@id="to_checkout_button"]/form/button
+
+
+//        WebElement toPaymentButton = driver.findElement(By.cssSelector("#siteMain > button"));
+//        toPaymentButton.click();
+
+
+        // Check name
+        WebElement nameElement =
+                driver.findElement(By.cssSelector("#siteMain > div.row > div:nth-child(1) > form > div > ul > li:nth-child(1) > span:nth-child(3)"));
+
+        //driver.findElement(By.cssSelector("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[1]/span[2]"));
+
+        Assertions.assertEquals("Jiri", nameElement.getText());
+
+
+        // Check lastname
+        WebElement lastNameElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[1]/span[3]"));
+        Assertions.assertEquals("Prochazka", lastNameElement.getText());
+
+        // Check street
+        WebElement streetElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[2]/span[1]"));
+        Assertions.assertEquals("Technicka222", streetElement.getText());
+
+        // Check street number
+        WebElement streetNumberElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[2]/span[2]"));
+        Assertions.assertEquals("2", streetNumberElement.getText());
+
+        // Check zip index
+        WebElement zipIndexElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[3]/span[1]"));
+        Assertions.assertEquals("16900", zipIndexElement.getText());
+
+        // Check city
+        WebElement cityElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[3]/span[2]"));
+        Assertions.assertEquals("Praha", cityElement.getText());
+
+        // Check state
+        WebElement stateElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[4]"));
+        Assertions.assertEquals("Česká republika", stateElement.getText());
+
+        // Check phone number
+        WebElement phoneNumberElement = driver.findElement(By.xpath("//*[@id='siteMain']/div[3]/div[1]/form/div/ul/li[5]/span"));
+        Assertions.assertEquals("777666888", phoneNumberElement.getText());
+
+        //driver.quit();
+
+        // name Jiri
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[1]/span[2]
+
+        // lastname Prochazka
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[1]/span[3]
+
+        // street Technicka
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[2]/span[1]
+
+        // number of street 2
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[2]/span[2]
+
+        // ZIP index 16900
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[3]/span[1]
+
+        // city Praha
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[3]/span[2]
+
+        // stat Ceska republika
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[4]
+
+        // phone number
+        //*[@id="siteMain"]/div[3]/div[1]/form/div/ul/li[5]/span
+
+
+    }
+
+    @Test
+    public void testCheckProductInFavorite() {
+        // Login
+        testAddToCart();
+
+
+        // Go to checkout
+        WebElement toFavorite =
+                driver.findElement(By.xpath("/html/body/header/div[1]/div[1]/div[2]/nav/div[3]/a"));
+        toFavorite.click();
+
+
+        //"Pampers Sensitive Vlhčené ubrousky 15 balení = 1200 vlhčených ubrousků"
+        String favText = driver.findElement(By.xpath("//*[@id=\"item-3a417d51-e740-11ed-a7ed-02d16b37478a\"]/div[1]/a")).getText();
+
+        //*[@id="item-3a417d51-e740-11ed-a7ed-02d16b37478a"]/div[1]/a/text()
+        assertEquals("Pampers Sensitive Vlhčené ubrousky 15 balení = 1200 vlhčených ubrousků", favText);
+
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/favorite-products.csv", numLinesToSkip = 1)
+    public void testCheckProductInFavorite2(String productName) {
+        // Login
+        testLogin();
+
+        // Go to checkout
+        WebElement toFavorite =
+                driver.findElement(By.xpath("/html/body/header/div[1]/div[1]/div[2]/nav/div[3]/a"));
+        toFavorite.click();
+
+        // Check if product is in favorites
+        String favText = driver.findElement(By.xpath("//*[@id=\"item-3a417d51-e740-11ed-a7ed-02d16b37478a\"]/div[1]/a")).getText();
+        assertEquals(productName, favText);
+
+    }
+
+
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "/favorite-products.csv", numLinesToSkip = 1)
+//    public void testCheckProductInFavorite3(String productName, String expectedErrorMessage) {
+//        // Login
+//        testLogin();
+//
+//        // Go to checkout
+//        WebElement toFavorite =
+//                driver.findElement(By.xpath("/html/body/header/div[1]/div[1]/div[2]/nav/div[3]/a"));
+//        toFavorite.click();
+//
+//        // Check if product is in favorites
+//        try {
+//            String favText = driver.findElement(By.xpath("//*[@id=\"item-3a417d51-e740-11ed-a7ed-02d16b37478a\"]/div[1]/a")).getText();
+//            assertEquals(productName, favText);
+//        } catch (AssertionError e) {
+//            assertEquals(expectedErrorMessage, e.getMessage());
+//        }
+//    }
 
 
 }
