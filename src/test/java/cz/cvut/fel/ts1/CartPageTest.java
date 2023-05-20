@@ -13,12 +13,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CartPageTest {
     private WebDriver driver;
     private LoginPage loginPage;
     private CartPage cartPage;
+    private FavouriteListPage favouriteListPage;
     private String loginUrl = "https://www.pinkorblue.cz/Konto/";
 
 
@@ -31,20 +33,21 @@ class CartPageTest {
         driver = new ChromeDriver(options);
         loginPage = new LoginPage(driver);
         cartPage = new CartPage(driver);
+        favouriteListPage = new FavouriteListPage(driver);
 
         driver.get(loginUrl);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    private void login() {
+    public void login() {
         loginPage.acceptCookie();
         loginPage.setEmail("qwerty12@cz.cz");
         loginPage.setPassword("qwerty12@cz.cz");
         loginPage.clickLogin();
     }
 
-// this test is good
+    // this test is good
     @Test
     public void testAddToCart() {
 
@@ -66,6 +69,24 @@ class CartPageTest {
         Assertions.assertEquals(expectedTitle, actualTitle);
 
     }
+
+    @Test
+    public void testCheckProductInFavorite() {
+        // Login
+        login();
+        // Search item
+        String productName = "pampers";
+        cartPage.searchProduct(productName);
+        cartPage.openProductDetails();
+
+        favouriteListPage.clickFav1();
+        favouriteListPage.clickFav2();
+
+
+        assertEquals("Pampers Sensitive Vlhčené ubrousky 15 balení = 1200 vlhčených ubrousků", favouriteListPage.getTextFav());
+
+    }
+
 
 
 //TODO because does not accept agreement
@@ -103,6 +124,7 @@ class CartPageTest {
 
 
     }
+
 
 
     @AfterEach
