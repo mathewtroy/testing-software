@@ -75,7 +75,7 @@ class ChangeAddressPageTest {
     }
 
     @Test
-    public void changeAddressIncorectMesto(){
+    public void changeAddressIncorectMesto(){ // CHYBA STRANKY
         login();
         changeAddressPage.clickChangeAddressB();
 
@@ -83,6 +83,24 @@ class ChangeAddressPageTest {
         changeAddressPage.ulozit();
         Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
     }
+
+    @Test
+    public void changeNameSecondNameToNull(){
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setJmeno("");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Křestní jméno je povinná informace", changeAddressPage.getErrorMestoText());
+
+        changeAddressPage.setPrijmeni("");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Příjmení je povinná informace", changeAddressPage.getErrorMestoText());
+
+    }
+
+
+
 
 //    @AfterEach
 //    public void tearDown() {
