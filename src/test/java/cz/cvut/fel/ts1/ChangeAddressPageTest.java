@@ -62,7 +62,26 @@ class ChangeAddressPageTest {
         Assertions.assertEquals("16800", changeAddressPage.getPscText());
         Assertions.assertEquals("Brno", changeAddressPage.getMestoText());
         Assertions.assertEquals("123456789", changeAddressPage.getPhoneText());
+    }
 
+    @Test
+    public void changeAddressIncorrectPsc(){
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setPsc("168asd00");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorPscText());
+    }
+
+    @Test
+    public void changeAddressIncorectMesto(){
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setJmeno("+ěš123123");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
     }
 
 //    @AfterEach
