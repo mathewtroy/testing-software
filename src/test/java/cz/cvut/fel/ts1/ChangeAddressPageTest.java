@@ -64,6 +64,49 @@ class ChangeAddressPageTest {
         Assertions.assertEquals("123456789", changeAddressPage.getPhoneText());
     }
 
+
+
+    @Test
+    public void changeAddressIncorrectJmeno(){ // CHYBA STRANKY
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setJmeno("+ěš123123");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+    }
+
+    @Test
+    public void changeAddressIncorrectPrijmeni(){ // CHYBA STRANKY
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setPrijmeni("+123123");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+    }
+
+    @Test
+    public void changeAddressIncorectUlice(){ // CHYBA STRANKY
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setUlice("+ěš123123");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+    }
+
+    @Test
+    public void changeAddressIncorrectCisloDomu(){ // CHYBA STRANKY
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setCisloDomu("qwe");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+    }
+
+
     @Test
     public void changeAddressIncorrectPsc(){
         login();
@@ -74,18 +117,32 @@ class ChangeAddressPageTest {
         Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorPscText());
     }
 
+
+
     @Test
-    public void changeAddressIncorectMesto(){ // CHYBA STRANKY
+    public void changeAddressIncorrectMesto(){ // CHYBA STRANKY
         login();
         changeAddressPage.clickChangeAddressB();
 
-        changeAddressPage.setJmeno("+ěš123123");
+        changeAddressPage.setMesto("+123123");
         changeAddressPage.ulozit();
         Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
     }
 
     @Test
-    public void changeNameSecondNameToNull(){
+    public void changeAddressIncorrectTelefon(){ // CHYBA STRANKY
+        login();
+        changeAddressPage.clickChangeAddressB();
+
+        changeAddressPage.setPhone("qweqew");
+        changeAddressPage.ulozit();
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+    }
+
+
+
+    @Test
+    public void changeAddressNameSecondNameToNull(){
         login();
         changeAddressPage.clickChangeAddressB();
 
