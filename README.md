@@ -1,7 +1,9 @@
 # Semestrální projekt z předmětu Testování softwaru (TS1)
 
 ## Cvičící: Václav Smítka
-## Zpracovali:  Aleksandr Kross, Vladyslav Hordiienko
+## Zpracovali:  
+## Aleksandr Kross <krossale@fel.czut.cz> 
+## Vladyslav Hordiienko <hordivla@fel.cvut.cz>
 
 
 ## Main
