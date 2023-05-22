@@ -2,8 +2,10 @@
 
 ## Cvičící: Václav Smítka
 ## Zpracovali:  
-## Aleksandr Kross <krossale@fel.czut.cz> 
-## Vladyslav Hordiienko <hordivla@fel.cvut.cz>
+## Aleksandr Kross 
+[email](<krossale@fel.czut.cz>) <br>
+## Vladyslav Hordiienko 
+[email](<hordivla@fel.cvut.cz>) <br>
 
 
 ## Main
