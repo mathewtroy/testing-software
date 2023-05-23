@@ -81,7 +81,7 @@ class CartPageTest {
 
         favouriteListPage.clickFav1();
         favouriteListPage.clickFav2();
-        String expectedText = "Pampers Sensitive Vlhčené ubrousky 15 balení = 1200 vlhčených ubrousků";
+        String expectedText = "Pampers Premium Protection , velikost 6 Extra Large , 13 kg+, měsíční balení (1x 144 plen)";
         assertEquals(expectedText, favouriteListPage.getTextFav());
 
     }
