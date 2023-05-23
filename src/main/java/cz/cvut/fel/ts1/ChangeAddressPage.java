@@ -5,6 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * @author Vladyslav Hordiienko
+ *
+ */
+
+
 public class ChangeAddressPage {
     private WebDriver driver;
 
@@ -75,9 +81,6 @@ public class ChangeAddressPage {
     private WebElement errorTelefonMsg;
 
 
-
-
-
     public ChangeAddressPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -146,6 +149,5 @@ public class ChangeAddressPage {
     public String getErrorUliceText(){return errorUliceMsg.getText();}
 
     public String getErrorTelefonText(){return errorTelefonMsg.getText();}
-
 
 }

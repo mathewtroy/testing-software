@@ -5,6 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * @author Aleksandr Kross
+ *
+ */
+
 public class CartPage {
 
     private WebDriver driver;
@@ -26,21 +31,6 @@ public class CartPage {
 
     @FindBy(xpath = "/html/body/div[3]/div[1]/div[1]/ul/form/li/ul/a")
     private WebElement addedProductTitle;
-
-    @FindBy(xpath = "//*[@id=\"to_checkout_button\"]/form/button\n")
-    private WebElement goToCartAgree;
-
-    @FindBy(xpath = "/html/body/header/div[1]/div[1]/div[2]/nav/div[4]")
-    private WebElement goToCart;
-
-//TODO because does not accept agreement
-
-    @FindBy(xpath = "//*[@id=\"checkOutForm\"]/div[14]/div[1]")
-    private WebElement acceptAgreement;
-    //*[@id="checkOutForm"]/div[10]/div[1]/div/label
-    //*[@id="checkOutForm"]/div[10]/div[1]/div
-    //*[@id="checkOutForm"]/div[10]/div[2]
-    //*[@id="checkOutForm"]/div[14]/div[1]
 
 
     public CartPage(WebDriver driver) {
@@ -68,18 +58,5 @@ public class CartPage {
     public String getAddedProductTitle() {
         return addedProductTitle.getText();
     }
-
-    public void clickGoToCart() {
-        goToCart.click();
-    }
-
-    public void clickGoToCartAgree() {
-        goToCartAgree.click();
-    }
-
-    public void clickAcceptAgreement() {
-        acceptAgreement.click();
-    }
-
 
 }

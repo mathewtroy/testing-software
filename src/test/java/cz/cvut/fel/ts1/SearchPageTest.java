@@ -13,6 +13,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+/**
+ * @author Aleksandr Kross
+ * @author Vladyslav Hordiienko
+ *
+ */
 
 public class SearchPageTest {
     private WebDriver driver;

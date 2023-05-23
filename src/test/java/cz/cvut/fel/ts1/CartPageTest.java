@@ -14,7 +14,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * @author Aleksandr Kross
+ * @author Vladyslav Hordiienko
+ *
+ */
 
 class CartPageTest {
     private WebDriver driver;
@@ -47,7 +52,6 @@ class CartPageTest {
         loginPage.clickLogin();
     }
 
-    // this test is good
     @Test
     public void testAddToCart() {
 
@@ -85,45 +89,6 @@ class CartPageTest {
         assertEquals(expectedText, favouriteListPage.getTextFav());
 
     }
-
-
-
-////TODO because does not accept agreement
-//
-//    @Test
-//    public void testOrderPlacement(){
-//
-//
-//        login();
-//
-//        // Click on the "K kosiku" button
-//        cartPage.clickGoToCart();
-//
-//        // Click on the "K pokladne" button
-//        cartPage.clickGoToCartAgree();
-//
-////TODO because cannot choose checkbox
-//// test open the web (<a>Vseobecne podminky</a>)
-//        // Click on the agreement
-//        cartPage.clickAcceptAgreement();
-//
-////        // Select the checkbox for agreeing to the terms
-////        WebElement checkbox = driver.findElement(By.id("checkAgb"));
-////        checkbox.click();
-////
-////        // Verify that the checkbox is selected
-////        Assertions.assertTrue(checkbox.isSelected());
-//
-//        // Check payment methods page
-//        String paymentMethodsText =
-//                driver.findElement(By.xpath("//p[contains(text(),'Způsoby platby')]")).getText();
-//        String expectedPaymentMethodsText = "Způsoby platby";
-//        Assertions.assertEquals( expectedPaymentMethodsText, paymentMethodsText );
-//
-//
-//
-//    }
-
 
 
     @AfterEach

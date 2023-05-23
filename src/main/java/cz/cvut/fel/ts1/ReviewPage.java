@@ -9,6 +9,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * @author Aleksandr Kross
+ *
+ */
+
+
 public class ReviewPage {
     private WebDriver driver;
 

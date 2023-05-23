@@ -13,6 +13,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+/**
+ * @author Aleksandr Kross
+ * @author Vladyslav Hordiienko
+ *
+ */
 
 public class ReviewPageTest {
 
@@ -87,6 +92,5 @@ public class ReviewPageTest {
     public void tearDown() {
         driver.quit();
     }
-
 
 }
