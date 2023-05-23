@@ -73,7 +73,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setJmeno("+ěš123123");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorNameText());
     }
 
     @Test
@@ -83,7 +83,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setPrijmeni("+123123");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorSurnameText());
     }
 
     @Test
@@ -93,7 +93,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setUlice("+ěš123123");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorUliceText());
     }
 
     @Test
@@ -103,7 +103,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setCisloDomu("qwe");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorUliceText());
     }
 
 
@@ -126,7 +126,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setMesto("+123123");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorPscText());
     }
 
     @Test
@@ -136,7 +136,7 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setPhone("qweqew");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Vyplňte prosím všechna pole označená \"*\"!", changeAddressPage.getErrorTelefonText());
     }
 
 
@@ -148,19 +148,19 @@ class ChangeAddressPageTest {
 
         changeAddressPage.setJmeno("");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Křestní jméno je povinná informace", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Křestní jméno je povinná informace", changeAddressPage.getErrorNameText());
 
         changeAddressPage.setPrijmeni("");
         changeAddressPage.ulozit();
-        Assertions.assertEquals("Příjmení je povinná informace", changeAddressPage.getErrorMestoText());
+        Assertions.assertEquals("Příjmení je povinná informace", changeAddressPage.getErrorSurnameText());
 
     }
 
 
 
 
-//    @AfterEach
-//    public void tearDown() {
-//        driver.quit();
-//    }
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+    }
 }

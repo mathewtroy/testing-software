@@ -65,6 +65,17 @@ public class ChangeAddressPage {
     @FindBy(xpath = "//*[@id=\"checkOutForm\"]/div[3]/div[2]")
     private WebElement errorNameMsg;
 
+    @FindBy(xpath = "//*[@id=\"checkOutForm\"]/div[4]/div[2]")
+    private WebElement errorSurnameMsg;
+
+    @FindBy(xpath = "//*[@id=\"checkOutForm\"]/div[5]/div[4]")
+    private WebElement errorUliceMsg;
+
+    @FindBy(xpath = "//*[@id=\"checkOutForm\"]/div[8]/div[2]")
+    private WebElement errorTelefonMsg;
+
+
+
 
 
     public ChangeAddressPage(WebDriver driver) {
@@ -128,7 +139,13 @@ public class ChangeAddressPage {
 
     public String getErrorPscText(){return errorPscMsg.getText();}
 
-    public String getErrorMestoText(){return errorNameMsg.getText();}
+    public String getErrorNameText(){return errorNameMsg.getText();}
+
+    public String getErrorSurnameText(){return errorSurnameMsg.getText();}
+
+    public String getErrorUliceText(){return errorUliceMsg.getText();}
+
+    public String getErrorTelefonText(){return errorTelefonMsg.getText();}
 
 
 }
