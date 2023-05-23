@@ -60,6 +60,6 @@
 
 
 ## Documentation ✅ 
-[Odkaz na dokumentace](https://gitlab.fel.cvut.cz/krossale/ts1_sp/-/blob/main/docs/ts1-semester_project.pdf)
+[Odkaz na dokumentace](https://gitlab.fel.cvut.cz/krossale/ts1_sp/-/blob/main/docs/ts1-sp.pdf)
 
 
