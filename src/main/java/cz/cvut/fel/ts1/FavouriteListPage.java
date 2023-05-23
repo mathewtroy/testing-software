@@ -14,7 +14,7 @@ public class FavouriteListPage {
     @FindBy(xpath = "//*[@id=\"buybox-options\"]/div[2]/div/div[2]/div[2]/div[3]/div[1]/div[2]/div/div[2]/a[1]")
     private WebElement addToFav2;
 
-    @FindBy(xpath = "//*[@id=\"item-7bc93d6d-f748-11ed-a7ed-02d16b37478a\"]/div[1]/a")
+    @FindBy(xpath = "//*[@id=\"item-39d3c4fc-f943-11ed-a7ed-02d16b37478a\"]/div[1]/a")
     private WebElement favText;
 
 
