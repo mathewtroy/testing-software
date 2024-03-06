@@ -4,8 +4,8 @@
 
 <details><summary> Show more </summary>
 
-**The goal of the assignment is to develop and present a testing strategy for a specific application. This involves:
-**
+**The goal of the assignment is to develop and present a testing strategy for a specific application. This involves:**
+
 **Application Description:** The development of a description of the application's functionality, identifying its main parts, and prioritizing them.
 
 **Testing Strategy:** Creating an overview of the application's parts, determining priorities, and developing testing levels.
