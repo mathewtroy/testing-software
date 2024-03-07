@@ -1,5 +1,10 @@
 # Semester project from the subject Software Testing (TS1)
 
+**Code**: B6B36TS1<br>
+**Name**: Software Testing<br>
+**Faculty**: Faculty of Electrical Engineering<br>
+**Department**: 13136 - Department of Computer Science <br>
+
 ## 🏷 Assignment
 
 <details><summary> Show more </summary>
